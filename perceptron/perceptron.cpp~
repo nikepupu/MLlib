@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <fstream>
+#include "file.h"
+int main(int argc, char ** argv)
+{
+  string name = argv[1];
+  /** we are assuming that the the 1 .. n-1 are features, and the last col is the output**/
+  ifstream in(argv[1]);
+  if (!in.is_open())
+  {
+    std::cerr << "file not open correctly. File name: "<<name << endl;
+    return 1; 
+  }
+  if (name.find(".csv"))
+    readCSV();
+  else if (name.find(".txt"))
+    readTXT();
+  else {
+    std::cerr << "file extension not supported. We currently only support txt or csv files\n";
+    return 1;
+  }
+  
+  
+  return 0;
+}
